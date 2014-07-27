@@ -37,19 +37,16 @@
 
             <ion-content scroll="true"> 
                 <!-- our list and list items -->
-                <ion-list can-swipe="listCanSwipe">
-                    <ion-item ng-repeat="task in activeProject.tasks">
+                <ion-list>
+                    <ion-item ng-repeat="task in activeProject.tasks"
+                                can-swipe="true">
                         {{task.title}}
-                        
-                        <ion-option-button class="button-positive"
-                                            ng-click="share(task)">
-                          Share
-                        </ion-option-button>
-                        
-                        <ion-option-button class="button-info"
-                                           ng-click="edit(task)">
-                          Edit
-                        </ion-option-button>
+                            <ion-option-button class="button-positive"
+                                                ng-click="share(task)">Share
+                            </ion-option-button>
+                            <ion-option-button class="button-info"
+                                               ng-click="edit(task)">Edit
+                            </ion-option-button>
                     </ion-item>
                 </ion-list>
             </ion-content>
@@ -64,14 +61,13 @@
                     <a class="button icon-left ion-home button-clear button-dark" ng-click="newProject()">Projects</a>
                 </div>
                 
-                <ion-list >
-
+                <ion-list>
                     <ion-item ng-repeat="project in projects"
                               ng-click="selectProject(project, $index)"
                               ng-class="{active: activeProject == project}">
                         {{project.title}}
                         <span class="badge badge-positive">{{project.tasks.length}}</span>
-                    </io    n-item>
+                    </ion-item>
 
                 </ion-list>
             </ion-content>
