@@ -108,7 +108,7 @@ angular.module('todo', ['ionic'])
            });
            $timeout(function() {
               myPopup.close(); //close the popup after 3 seconds for some reason
-           }, 10000);
+           }, 20000);
           };
 
         ///////////////////////////////
@@ -172,12 +172,18 @@ angular.module('todo', ['ionic'])
                         break;
                     }
                     
-                    
                 }
             }
         });
 
-        })
+        $scope.edit = function(task) {
+            alert('Edit Item: ' + task.title);
+        };
+        $scope.share = function(task) {
+            alert('Share Item: ' + task.title);
+        };
+  
+})
 
 
     .run(function($ionicPlatform) {

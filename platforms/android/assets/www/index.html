@@ -21,62 +21,64 @@
 <body ng-app="todo" ng-controller="TodoCtrl">
     
     <ion-side-menus>
-    <!-- Center content -->
-    <ion-side-menu-content>
-        <ion-header-bar class="bar-positive" align-title="left">
-            <button class="button button-icon" ng-click="toggleProjects()">
-                <i class="icon ion-navicon"></i>
-            </button>
+        <!-- Center content -->
+        <ion-side-menu-content>
+            <ion-header-bar class="bar-positive" align-title="left">
+                <button class="button button-icon" ng-click="toggleProjects()">
+                    <i class="icon ion-navicon"></i>
+                </button>
 
-            <h1 class="title">{{activeProject.title}}</h1>
-            <!-- New Task button-->
-            <button class="button button-icon" ng-click="newTask()">
-                <i class="icon ion-ios7-plus-empty"></i>
-            </button>
-        </ion-header-bar>
+                <h1 class="title">{{activeProject.title}}</h1>
+                <!-- New Task button-->
+                <button class="button button-icon" ng-click="newTask()">
+                    <i class="icon ion-ios7-plus-empty"></i>
+                </button>
+            </ion-header-bar>
 
-        <ion-content scroll="false">
-            <!-- our list and list items -->
-            <ion-list>
-                <ion-item ng-repeat="task in activeProject.tasks">
-                    {{task.title}}
-                </ion-item>
-            </ion-list>
+            <ion-content scroll="true"> 
+                <!-- our list and list items -->
+                <ion-list can-swipe="listCanSwipe">
+                    <ion-item ng-repeat="task in activeProject.tasks">
+                        {{task.title}}
+                        
+                        <ion-option-button class="button-positive"
+                                            ng-click="share(task)">
+                          Share
+                        </ion-option-button>
+                        
+                        <ion-option-button class="button-info"
+                                           ng-click="edit(task)">
+                          Edit
+                        </ion-option-button>
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-side-menu-content>
 
-        </ion-content>
-    </ion-side-menu-content>
+        <!-- Left menu -->
+        <ion-side-menu side="left">
+            <!-- Project list -->
+            <ion-content scroll="false">
 
-    <!-- Left menu -->
-    <ion-side-menu side="left">
+                <div class="item item-divider">
+                    <a class="button icon-left ion-home button-clear button-dark" ng-click="newProject()">Projects</a>
+                </div>
+                
+                <ion-list >
 
-        <!-- Project header 
+                    <ion-item ng-repeat="project in projects"
+                              ng-click="selectProject(project, $index)"
+                              ng-class="{active: activeProject == project}">
+                        {{project.title}}
+                        <span class="badge badge-positive">{{project.tasks.length}}</span>
+                    </io    n-item>
 
-        <ion-header-bar class="bar bar-header bar-light" align-title="left">
-            <h1 class="title">Projects</h1>
-            <button class="button button-icon ion-ios7-plus-empty" ng-click="newProject()"></button>
-        </ion-header-bar> -->
-         
+                </ion-list>
+            </ion-content>
 
+        </ion-side-menu>
 
-        <!-- Project list -->
-        <ion-content scroll="false">
-
-            <div class="item item-divider">
-                <a class="button icon-left ion-home button-clear button-dark" ng-click="newProject()">Projects</a>
-            </div>
-            
-            <ion-list >
-
-                <ion-item ng-repeat="project in projects"
-                          ng-click="selectProject(project, $index)"
-                          ng-class="{active: activeProject == project}">
-                    {{project.title}}
-                    <span class="badge badge-positive">{{project.tasks.length}}</span>
-                </ion-item>
-
-            </ion-list>
-        </ion-content>
-    </ion-side-menu></ion-side-menus>
+    </ion-side-menus>
 
     <script id="new-task.html" type="text/ng-template">
         <div class="modal">

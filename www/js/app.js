@@ -108,7 +108,7 @@ angular.module('todo', ['ionic'])
            });
            $timeout(function() {
               myPopup.close(); //close the popup after 3 seconds for some reason
-           }, 10000);
+           }, 20000);
           };
 
         ///////////////////////////////
@@ -162,6 +162,10 @@ angular.module('todo', ['ionic'])
             $ionicSideMenuDelegate.toggleLeft();
         };
 
+        
+        // Try to create the first project, make sure to defer
+        // this by using $timeout so everything is initialized
+        // properly
         $timeout(function() {
             if($scope.projects.length == 0) {
                 while(true) {
@@ -172,12 +176,20 @@ angular.module('todo', ['ionic'])
                         break;
                     }
                     
-                    
                 }
             }
         });
 
-        })
+        
+
+        $scope.edit = function(task) {
+          alert('Edit Item: ' + task.title);
+        };
+        $scope.share = function(task) {
+          alert('Share Item: ' + task.title);
+        };
+  
+})
 
 
     .run(function($ionicPlatform) {
