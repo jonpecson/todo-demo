@@ -47,6 +47,9 @@
                             <ion-option-button class="button-info"
                                                ng-click="edit(task)">Edit
                             </ion-option-button>
+                            <ion-option-button class="button-assertive"
+                                               ng-click="activeProject.tasks.splice($index, 1)">Delete
+                            </ion-option-button>
                     </ion-item>
                 </ion-list>
             </ion-content>
